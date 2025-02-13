@@ -172,7 +172,8 @@ margin-top: 30px;
   
 
 function MainFilterDashboard() {
-    const [selectedFilters, setSelectedFilters] = useState({
+    const [selectedFilters, setSelectedFilters] = useState(JSON.parse(localStorage.getItem("filtersSet")) || 
+    {
         application: "all",
         lineNumber: "all",
         rejectionReason: "all",
@@ -225,6 +226,7 @@ function MainFilterDashboard() {
                 avgThroughput,
               });
             };
+            localStorage.setItem("filtersSet", JSON.stringify(selectedFilters));
         
             applyFilters();
           }, [selectedFilters]);
@@ -240,11 +242,34 @@ function MainFilterDashboard() {
     <>
     {/* Filters */}
     <FilterContainer>
-            <Select styles={customStyles} options={filterOptions.application} onChange={(option) => handleFilterChange("application", option.value)} />
-            <Select styles={customStyles} options={filterOptions.lineNumber} onChange={(option) => handleFilterChange("lineNumber", option.value)} />
-            <Select styles={customStyles} options={filterOptions.rejectionReason} onChange={(option) => handleFilterChange("rejectionReason", option.value)} />
-            <Select styles={customStyles} options={filterOptions.dateRange} onChange={(option) => handleFilterChange("dateRange", option.value)} />
-            <DownloadButton><img src={downloadIcon} alt="Download Icon" /> Download Data</DownloadButton>
+        <Select
+        styles={customStyles}
+        options={filterOptions.application}
+        value={filterOptions.application.find(option => option.value === selectedFilters.application)}
+        onChange={(option) => handleFilterChange("application", option.value)}
+        />
+
+        <Select
+        styles={customStyles}
+        options={filterOptions.lineNumber}
+        value={filterOptions.lineNumber.find(option => option.value === selectedFilters.lineNumber)}
+        onChange={(option) => handleFilterChange("lineNumber", option.value)}
+        />
+
+        <Select
+        styles={customStyles}
+        options={filterOptions.rejectionReason}
+        value={filterOptions.rejectionReason.find(option => option.value === selectedFilters.rejectionReason)}
+        onChange={(option) => handleFilterChange("rejectionReason", option.value)}
+        />
+
+        <Select
+        styles={customStyles}
+        options={filterOptions.dateRange}
+        value={filterOptions.dateRange.find(option => option.value === selectedFilters.dateRange)}
+        onChange={(option) => handleFilterChange("dateRange", option.value)}
+        />
+        <DownloadButton><img src={downloadIcon} alt="Download Icon" /> Download Data</DownloadButton>
           </FilterContainer>
 
           {/* KPI Metrics */}
