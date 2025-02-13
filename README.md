@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+📌 KPI Dashboard
+A dynamic KPI tracking dashboard built using React.js, Recharts, and React-Select. This dashboard provides real-time data visualization with interactive filters, charts, and tables.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+✨ Features
+✅ Dynamic Filtering – Users can filter by Application, Line Number, Rejection Reason, and Date Range
+✅ React-Select for Dropdowns – User-friendly multi-select dropdowns for seamless filtering
+✅ Live Data Updates – Filters affect KPIs, Charts, and Table in real-time
+✅ Persistent State – Filters remain intact even after a page refresh (localStorage used)
+✅ KPI Cards – Displays Total Processed, Passed, Rejected Units, and Throughput
+✅ Data Visualization – Bar & Pie Charts update dynamically based on filters
+✅ Sidebar Navigation – Switch between Dashboard, Camera View, and Event Log
+✅ Styled Components – Fully responsive UI with consistent styling
 
-## Available Scripts
+🛠 Tech Stack
+React.js – Core framework
+Recharts – For interactive charts
+React-Select – Custom dropdown filters
+Styled-Components – CSS-in-JS for styling
+LocalStorage – To persist user-selected filters
 
-In the project directory, you can run:
+📁 Folder Structure
+bash
+Copy
+Edit
+/kpi-dashboard
+│── /src
+│   ├── /components  // Reusable UI Components (KPICard, Sidebar, Navbar)
+│   ├── /pages       // Different pages (Dashboard, CameraView, EventLog)
+│   ├── /assets      // Icons & images
+│   ├── /utils       // Utility functions
+│   ├── App.js       // Main React App
+│   ├── index.js     // Entry Point
+│── /public
+│── README.md
+│── package.json
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🚀 Final Stage Implementation
+📊 Filtering & Data Persistence
+The filters dynamically update all charts and the table.
+Selected filters are stored in localStorage, so they persist even after a page refresh.
+KPIs, Charts, and Tables auto-update whenever filters are changed.
+📡 Sidebar Navigation (Dynamic Page Switching)
+The sidebar allows seamless navigation between:
+KPI Dashboard (Main Component)
+Camera View
+Event Log
+The displayed content updates dynamically based on the selected sidebar option.
+📈 Charts & Tables
+Recharts Bar & Pie Charts reflect filtered data.
+The Data Table updates to show only filtered results.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+🚀 How to Run Locally
+1️⃣ Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/adityarajbenn/kpi-dashboard.git
+cd kpi-dashboard
+2️⃣ Install Dependencies
+bash
+Copy
+Edit
+npm install
+3️⃣ Start the Development Server
+bash
+Copy
+Edit
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npm start
+The project will run on http://localhost:3000/
 
-### `npm run build`
+🌐 Deployment
+The dashboard is deployed on Netlify for easy access.
+Live Demo: https://kpidemo.netlify.app/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📝 Credits
+Developed by Aditya Raj Benn 🚀
