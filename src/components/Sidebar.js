@@ -51,8 +51,7 @@ const NavLink = styled.button`
   img {
     width: 20px;
     height: auto;
-    transition: filter 0.3s ease;
-    filter: ${(props) => (!props.$active ? "invert(1) brightness(100)" : "invert(0)")}; 
+    color: black;
   }
 `;
 

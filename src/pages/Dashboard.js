@@ -46,7 +46,7 @@ const Dashboard = () => {
   return (
     <DashboardContainer>
       {/* Pass setSelectedPage to Sidebar so it can update the state */}
-      <Sidebar setSelectedPage={setSelectedPage} />
+      <Sidebar selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       <Content>
         <Navbar />
         <ContentWrapper>{renderContent()}</ContentWrapper>
