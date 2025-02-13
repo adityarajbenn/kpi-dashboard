@@ -9,6 +9,11 @@ const TableContainer = styled.div`
   overflow: hidden;
 `;
 
+const TableWrapper = styled.div`
+  max-height: 300px; /* Set table height */
+  overflow-y: auto; /* Enable vertical scrolling */
+`;
+
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -16,13 +21,17 @@ const Table = styled.table`
 `;
 
 const TableHeader = styled.th`
-height: 44px;
+  height: 44px;
   padding: 12px 24px;
   text-align: left;
-  fint-size: 12px;
+  font-size: 12px;
   font-weight: 600;
   color: #333;
   border-bottom: 2px solid #ddd;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 `;
 
 const TableRow = styled.tr`
@@ -79,19 +88,23 @@ const DataTable = () => {
             <TableHeader>Time</TableHeader>
           </tr>
         </thead>
-        <tbody>
-          {mockData.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell>{row.application}</TableCell>
-              <TableCell>{row.lineNumber}</TableCell>
-              <TableCell>{row.product}</TableCell>
-              <TableCell>{row.reason}</TableCell>
-              <TableCell>{row.quantity}</TableCell>
-              <TableCell>{row.time}</TableCell>
-            </TableRow>
-          ))}
-        </tbody>
       </Table>
+      <TableWrapper>
+        <Table>
+          <tbody>
+            {mockData.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell>{row.application}</TableCell>
+                <TableCell>{row.lineNumber}</TableCell>
+                <TableCell>{row.product}</TableCell>
+                <TableCell>{row.reason}</TableCell>
+                <TableCell>{row.quantity}</TableCell>
+                <TableCell>{row.time}</TableCell>
+              </TableRow>
+            ))}
+          </tbody>
+        </Table>
+      </TableWrapper>
     </TableContainer>
   );
 };

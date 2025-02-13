@@ -1,14 +1,16 @@
+import { useState } from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
 import grid from "../assets/icons/Grid.png";
 import screen from "../assets/icons/Screen.png";
 import vector from "../assets/icons/Vector.png";
+import { FiMenu } from "react-icons/fi"; // Import Hamburger Icon
 
 const SidebarContainer = styled.div`
-  position: sticky;
+  position: fixed;
   top: 0;
-  left: 0;
-  width: calc(17.22%);
+  left: ${(props) => (props.$isOpen ? "0" : "-100%")}; /* Toggle Sidebar */
+  width: 250px;
   height: 100vh;
   background: white;
   box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
@@ -17,11 +19,33 @@ const SidebarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border: 0.5px solid #CDD5DF;
+  transition: left 0.3s ease-in-out;
+  z-index: 100;
+
+  @media (min-width: 1024px) {
+    position: sticky;
+    left: 0;
+    width: calc(17.22%);
+  }
+`;
+
+const HamburgerButton = styled.button`
+  position: fixed;
+  top: 30px;
+  left: 15px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 100;
+
+  @media (min-width: 1024px) {
+    display: none; /* Hide on Desktop */
+  }
 `;
 
 const Logo = styled.img`
-  width: 220px;
-  height: auto;
+  width: 180px;
   margin-bottom: 20px;
 `;
 
@@ -51,35 +75,44 @@ const NavLink = styled.button`
   img {
     width: 20px;
     height: auto;
-    color: black;
   }
 `;
 
 const Sidebar = ({ selectedPage, setSelectedPage }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <SidebarContainer>
-      <Logo src={logo} alt="ProWiz Logo" />
-      <Nav>
-        <NavLink 
-          onClick={() => setSelectedPage("dashboard")} 
-          $active={selectedPage === "dashboard"}
-        >
-          <img src={grid} alt="Dashboard Icon" /> Dashboard
-        </NavLink>
-        <NavLink 
-          onClick={() => setSelectedPage("camera-view")} 
-          $active={selectedPage === "camera-view"}
-        >
-          <img src={screen} alt="Camera Icon" /> Camera View
-        </NavLink>
-        <NavLink 
-          onClick={() => setSelectedPage("event-log")} 
-          $active={selectedPage === "event-log"}
-        >
-          <img src={vector} alt="Event Log Icon" /> Event Log
-        </NavLink>
-      </Nav>
-    </SidebarContainer>
+    <>
+      {/* Hamburger Button */}
+      <HamburgerButton onClick={() => setIsOpen(!isOpen)}>
+        <FiMenu />
+      </HamburgerButton>
+
+      {/* Sidebar */}
+      <SidebarContainer $isOpen={isOpen}>
+        <Logo src={logo} alt="ProWiz Logo" />
+        <Nav>
+          <NavLink 
+            onClick={() => { setSelectedPage("dashboard"); setIsOpen(false); }} 
+            $active={selectedPage === "dashboard"}
+          >
+            <img src={grid} alt="Dashboard Icon" /> Dashboard
+          </NavLink>
+          <NavLink 
+            onClick={() => { setSelectedPage("camera-view"); setIsOpen(false); }} 
+            $active={selectedPage === "camera-view"}
+          >
+            <img src={screen} alt="Camera Icon" /> Camera View
+          </NavLink>
+          <NavLink 
+            onClick={() => { setSelectedPage("event-log"); setIsOpen(false); }} 
+            $active={selectedPage === "event-log"}
+          >
+            <img src={vector} alt="Event Log Icon" /> Event Log
+          </NavLink>
+        </Nav>
+      </SidebarContainer>
+    </>
   );
 };
 

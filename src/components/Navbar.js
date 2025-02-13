@@ -14,12 +14,23 @@ const NavbarContainer = styled.div`
   width: 97%;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 1024px) {
+    position: fixed;
+    top: 0;
+    width: 90%;
+    z-index: 10;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 1.5rem;
   font-weight: bold;
   color: #000;
+
+  @media (max-width: 1024px) {
+    margin-left: 30px;
+  }
 `;
 
 const UserSection = styled.div`

@@ -124,6 +124,13 @@ grid-template-columns: repeat(5, 1fr);
 gap: 16px;
 margin-bottom: 20px;
 align-items: center;
+@media (max-width: 1024px) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 768px) {
+  grid-template-columns: repeat(1, 1fr);
+}
 `;
 
 const DownloadButton = styled.button`
@@ -167,6 +174,10 @@ display: grid;
 grid-template-columns: repeat(2, 1fr);
 gap: 24px;
 margin-top: 30px;
+
+@media (max-width: 768px) {
+  grid-template-columns: repeat(1, 1fr);
+}
 `;
 
   
