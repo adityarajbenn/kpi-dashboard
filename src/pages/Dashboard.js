@@ -3,13 +3,14 @@ import Navbar from "../components/Navbar";
 import KPICard from "../components/KPICard";
 import DataTable from "../components/DataTable";
 import Select from "react-select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import pageIcon from "../assets/icons/file.png";
 import checkIcon from "../assets/icons/check.png";
 import BarChartComponent from "../components/BarChartComponent";
 import PieChartComponent from "../components/PieChartComponent";
 import downloadIcon from "../assets/icons/Download.png";
+import moment from "moment";
 
 // Custom styles for React Select
 const customStyles = {
@@ -36,7 +37,7 @@ const allData = [
     unitsPassed: 800,
     unitsRejected: 20,
     throughput: 50,
-    date: "2024-02-01",
+    date: "2025-02-01",
   },
   {
     id: 2,
@@ -48,7 +49,7 @@ const allData = [
     unitsPassed: 1100,
     unitsRejected: 40,
     throughput: 60,
-    date: "2024-01-15",
+    date: "2025-01-15",
   },
   {
     id: 3,
@@ -60,7 +61,7 @@ const allData = [
     unitsPassed: 1400,
     unitsRejected: 30,
     throughput: 70,
-    date: "2023-12-20",
+    date: "2024-12-20",
   },
   {
     id: 4,
@@ -72,7 +73,7 @@ const allData = [
     unitsPassed: 1700,
     unitsRejected: 50,
     throughput: 80,
-    date: "2024-02-10",
+    date: "2025-02-10",
   },
   {
     id: 5,
@@ -84,7 +85,7 @@ const allData = [
     unitsPassed: 1900,
     unitsRejected: 20,
     throughput: 90,
-    date: "2024-02-05",
+    date: "2025-02-05",
   },
 ];
 
@@ -111,6 +112,7 @@ const filterOptions = {
     { value: "Missing Coding", label: "Missing Coding" },
   ],
   dateRange: [
+    { value: "all", label: "All Previous Years" },
     { value: "last_week", label: "Last Week" },
     { value: "last_month", label: "Last Month" },
     { value: "last_year", label: "Last Year" },
@@ -189,28 +191,70 @@ const ChartsContainer = styled.div`
 
 
 const Dashboard = () => {
-    // const [selectedFilters, setSelectedFilters] = useState({
-    //     application: "all",
-    //     lineNumber: "all",
-    //     rejectionReason: "all",
-    //     dateRange: "last_month",
-    //   });
-  const filteredData =allData;
-  const kpiMetrics = {
-    totalProcessed: 2528,
-    totalPassed: 814,
-    totalRejected: 12,
-    avgThroughput: 110.14,
-};
+    const [selectedFilters, setSelectedFilters] = useState({
+        application: "all",
+        lineNumber: "all",
+        rejectionReason: "all",
+        dateRange: "all",
+      });
+      const [filteredData, setFilteredData] = useState(allData);
+      const [kpiMetrics, setKpiMetrics] = useState({
+          totalProcessed: 2528,
+          totalPassed: 814,
+          totalRejected: 12,
+          avgThroughput: 110.14,
+        });
+        
 
-  // Handle filter change
-  const handleFilterChange = (filter, value) => {
-    console.log("filter")
-    // setSelectedFilters((prev) => ({
-    //   ...prev,
-    //   [filter]: value,
-    // }));
-  };
+        useEffect(() => {
+            const applyFilters = () => {
+              const filtered = allData.filter((entry) => {
+                const matchesApplication = selectedFilters.application === "all" || entry.application === selectedFilters.application;
+                const matchesLineNumber = selectedFilters.lineNumber === "all" || entry.lineNumber === selectedFilters.lineNumber;
+                const matchesRejection = selectedFilters.rejectionReason === "all" || entry.rejectionReason === selectedFilters.rejectionReason;
+                // Date Filtering
+                const entryDate = moment(entry.date);
+                let matchesDate = true;
+                if (selectedFilters.matchesDate === "all"){
+                    matchesDate = true;
+                }
+                else if (selectedFilters.dateRange === "last_week") {
+                  matchesDate = entryDate.isAfter(moment().subtract(7, "days"));
+                } else if (selectedFilters.dateRange === "last_month") {
+                  matchesDate = entryDate.isAfter(moment().subtract(1, "months"));
+                } else if (selectedFilters.dateRange === "last_year") {
+                  matchesDate = entryDate.isAfter(moment().subtract(1, "years"));
+                }
+        
+                return matchesApplication && matchesLineNumber && matchesRejection && matchesDate;
+              });
+        
+              setFilteredData(filtered);
+        
+              // Calculate totals for KPI Cards
+              const totalProcessed = filtered.reduce((sum, item) => sum + item.unitsProcessed, 0);
+              const totalPassed = filtered.reduce((sum, item) => sum + item.unitsPassed, 0);
+              const totalRejected = filtered.reduce((sum, item) => sum + item.unitsRejected, 0);
+              const avgThroughput =
+                filtered.length > 0 ? filtered.reduce((sum, item) => sum + item.throughput, 0) / filtered.length : 0;
+              setKpiMetrics({
+                totalProcessed,
+                totalPassed,
+                totalRejected,
+                avgThroughput,
+              });
+            };
+        
+            applyFilters();
+          }, [selectedFilters]);
+        
+          // Handle filter change
+          const handleFilterChange = (filter, value) => {
+            setSelectedFilters((prev) => ({
+              ...prev,
+              [filter]: value,
+            }));
+          };
 
   return (
     <DashboardContainer>
