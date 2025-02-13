@@ -1,14 +1,13 @@
 import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import grid from "../assets/icons/Grid.png";
 import screen from "../assets/icons/Screen.png";
 import vector from "../assets/icons/Vector.png";
 
 const SidebarContainer = styled.div`
-position: sticky;
-top: 0;
-left: 0;
+  position: sticky;
+  top: 0;
+  left: 0;
   width: calc(17.22%);
   height: 100vh;
   background: white;
@@ -17,6 +16,7 @@ left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 0.5px solid #CDD5DF;
 `;
 
 const Logo = styled.img`
@@ -31,7 +31,7 @@ const Nav = styled.nav`
   width: 100%;
 `;
 
-const NavLink = styled(Link)`
+const NavLink = styled.button`
   display: flex;
   align-items: center;
   gap: 12px;
@@ -43,6 +43,10 @@ const NavLink = styled(Link)`
   border-radius: 100px;
   font-weight: bold;
   transition: background 0.3s ease;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
 
   img {
     width: 20px;
@@ -50,24 +54,29 @@ const NavLink = styled(Link)`
     transition: filter 0.3s ease;
     filter: ${(props) => (!props.$active ? "invert(1) brightness(100)" : "invert(0)")}; 
   }
-    
 `;
 
-const Sidebar = () => {
-  const location = useLocation(); // ✅ Get current route
-
+const Sidebar = ({ selectedPage, setSelectedPage }) => {
   return (
-    <SidebarContainer style={{
-        border: '0.5px solid #CDD5DF'}}>
+    <SidebarContainer>
       <Logo src={logo} alt="ProWiz Logo" />
       <Nav>
-        <NavLink to="/" $active={location.pathname === "/"}>
+        <NavLink 
+          onClick={() => setSelectedPage("dashboard")} 
+          $active={selectedPage === "dashboard"}
+        >
           <img src={grid} alt="Dashboard Icon" /> Dashboard
         </NavLink>
-        <NavLink to="/camera-view" $active={location.pathname === "/camera-view"}>
+        <NavLink 
+          onClick={() => setSelectedPage("camera-view")} 
+          $active={selectedPage === "camera-view"}
+        >
           <img src={screen} alt="Camera Icon" /> Camera View
         </NavLink>
-        <NavLink to="/event-log" $active={location.pathname === "/event-log"}>
+        <NavLink 
+          onClick={() => setSelectedPage("event-log")} 
+          $active={selectedPage === "event-log"}
+        >
           <img src={vector} alt="Event Log Icon" /> Event Log
         </NavLink>
       </Nav>
