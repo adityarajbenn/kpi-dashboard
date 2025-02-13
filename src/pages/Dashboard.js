@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import KPICard from "../components/KPICard";
 import DataTable from "../components/DataTable";
 import Select from "react-select";
-// import { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import pageIcon from "../assets/icons/file.png";
 import checkIcon from "../assets/icons/check.png";
@@ -197,10 +197,10 @@ const Dashboard = () => {
     //   });
   const filteredData =allData;
   const kpiMetrics = {
-    totalProcessed: 0,
-    totalPassed: 0,
-    totalRejected: 0,
-    avgThroughput: 0,
+    totalProcessed: 2528,
+    totalPassed: 814,
+    totalRejected: 12,
+    avgThroughput: 110.14,
 };
 
   // Handle filter change
