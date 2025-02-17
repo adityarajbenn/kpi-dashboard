@@ -80,9 +80,11 @@ const Navbar = () => {
       <Title>KPI Tracker</Title>
       <UserSection onClick={() => setDropdownOpen(!dropdownOpen)}>
         <UserImage src={userIcon} alt="User" />
-        <span>User</span>
+        <span>Aditya</span>
         <IoIosArrowDown size={16} />
         <Dropdown open={dropdownOpen}>
+          <DropdownItem style={{color:'red'}}>HIREEEE</DropdownItem>
+          <DropdownItem style={{color:'red'}}>MEEE</DropdownItem>
           <DropdownItem>Profile</DropdownItem>
           <DropdownItem>Logout</DropdownItem>
         </Dropdown>
