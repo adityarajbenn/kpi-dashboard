@@ -13,7 +13,7 @@ A dynamic **KPI tracking dashboard** built using **React.js**, **Recharts**, and
 ✅ **KPI Cards** – Displays **Total Processed, Passed, Rejected Units, and Throughput**  
 ✅ **Data Visualization** – **Bar & Pie Charts** update dynamically  
 ✅ **Sidebar Navigation** – Switch between **Dashboard, Camera View, and Event Log**  
-✅ **Styled Components** – Fully responsive UI with consistent styling  
+✅ **Styled Components** – **Fully responsive** UI with consistent styling  
 
 ---
 
@@ -27,8 +27,6 @@ A dynamic **KPI tracking dashboard** built using **React.js**, **Recharts**, and
 
 ---
 
-
----
 
 ## 📡 Final Stage Implementation
 

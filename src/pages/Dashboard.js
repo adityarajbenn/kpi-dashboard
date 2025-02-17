@@ -23,6 +23,9 @@ const ContentWrapper = styled.div`
   width: 97%;
   margin-left: auto;
   margin-right: auto;
+  @media (max-width: 1024px) {
+ margin-top: 100px;
+}
 `;
 
 const Dashboard = () => {

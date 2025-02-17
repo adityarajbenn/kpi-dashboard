@@ -6,18 +6,16 @@ const TableContainer = styled.div`
   border: 0.5px solid #CDD5DF;
   width: 100%;
   margin-top: 30px;
-  overflow: hidden;
+  overflow-y: auto;
 `;
 
 const TableWrapper = styled.div`
-  max-height: 300px; /* Set table height */
-  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 300px;
 `;
 
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  overflow: hidden;
 `;
 
 const TableHeader = styled.th`
