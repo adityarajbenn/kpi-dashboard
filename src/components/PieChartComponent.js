@@ -19,29 +19,24 @@ const Title = styled.h3`
   width: 100%;
 `;
 
-const data = [
-  { name: "Incorrect Price", value: 48 },
-  { name: "Missing Coding", value: 52 },
-];
+const COLORS = ["#53E8C0", "#002BC5", "#FF3D00", "#FFC107", "#8E24AA"];
 
-const COLORS = ["#53E8C0", "#002BC5"];
-
-const PieChartComponent = () => {
+const PieChartComponent = (filteredData) => {
   return (
     <ChartContainer>
       <Title>Reasons for Rejection</Title>
       <ResponsiveContainer width="100%" height={250}>
         <PieChart>
           <Pie
-            data={data}
-            dataKey="value"
-            nameKey="name"
+            data={filteredData.data}
+            dataKey="rejected"
+            nameKey="rejectionReason"
             cx="50%"
             cy="50%"
             outerRadius={80}
             label={({ percent }) => `${(percent * 100).toFixed(0)}%`} // ✅ Labels as percentages
           >
-            {data.map((entry, index) => (
+            {filteredData.data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>

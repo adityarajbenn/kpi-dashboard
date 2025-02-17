@@ -6,11 +6,12 @@ const TableContainer = styled.div`
   border: 0.5px solid #CDD5DF;
   width: 100%;
   margin-top: 30px;
-  overflow-y: auto;
+  overflow: hidden;
 `;
 
 const TableWrapper = styled.div`
   max-height: 300px;
+  overflow-y: auto;
 `;
 
 const Table = styled.table`
@@ -45,59 +46,33 @@ const TableCell = styled.td`
   border-bottom: 1px solid #ddd;
 `;
 
-const mockData = [
-  {
-    application: "Application 1",
-    lineNumber: "Line 1",
-    product: "Party Pack",
-    reason: "Wrong Coding",
-    quantity: 10,
-    time: "01/02/2024",
-  },
-  {
-    application: "Application 2",
-    lineNumber: "Line 2",
-    product: "Tub",
-    reason: "Wrong Price",
-    quantity: 12,
-    time: "01/02/2024",
-  },
-  {
-    application: "Application 3",
-    lineNumber: "Line 3",
-    product: "Party Pack",
-    reason: "Wrong Factory Code",
-    quantity: 8,
-    time: "01/02/2024",
-  },
-];
-
-const DataTable = () => {
+const DataTable = ({ data }) => {
   return (
     <TableContainer>
-      <Table>
-        <thead>
-          <tr>
-            <TableHeader>Application</TableHeader>
-            <TableHeader>Line Number</TableHeader>
-            <TableHeader>Product</TableHeader>
-            <TableHeader>Reason For Rejection</TableHeader>
-            <TableHeader>Quantity</TableHeader>
-            <TableHeader>Time</TableHeader>
-          </tr>
-        </thead>
-      </Table>
       <TableWrapper>
         <Table>
+          {/* Table Head */}
+          <thead>
+            <tr>
+              <TableHeader>Application</TableHeader>
+              <TableHeader>Line Number</TableHeader>
+              <TableHeader>Product</TableHeader>
+              <TableHeader>Reason For Rejection</TableHeader>
+              <TableHeader>Quantity</TableHeader>
+              <TableHeader>Time</TableHeader>
+            </tr>
+          </thead>
+
+          {/* Table Body */}
           <tbody>
-            {mockData.map((row, index) => (
+            {data?.map((row, index) => (
               <TableRow key={index}>
                 <TableCell>{row.application}</TableCell>
                 <TableCell>{row.lineNumber}</TableCell>
                 <TableCell>{row.product}</TableCell>
-                <TableCell>{row.reason}</TableCell>
-                <TableCell>{row.quantity}</TableCell>
-                <TableCell>{row.time}</TableCell>
+                <TableCell>{row.rejectionReason}</TableCell>
+                <TableCell>{row.unitsProcessed}</TableCell>
+                <TableCell>{row.date}</TableCell>
               </TableRow>
             ))}
           </tbody>

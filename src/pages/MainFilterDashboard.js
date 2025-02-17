@@ -32,8 +32,8 @@ const customStyles = {
       product: "Party Pack",
       rejectionReason: "Wrong Coding",
       unitsProcessed: 1200,
-      unitsPassed: 800,
-      unitsRejected: 20,
+      passed: 800,
+      rejected: 20,
       throughput: 50,
       date: "2025-02-01",
     },
@@ -44,8 +44,8 @@ const customStyles = {
       product: "Tub",
       rejectionReason: "Wrong Price",
       unitsProcessed: 1500,
-      unitsPassed: 1100,
-      unitsRejected: 40,
+      passed: 1100,
+      rejected: 40,
       throughput: 60,
       date: "2025-01-15",
     },
@@ -56,8 +56,8 @@ const customStyles = {
       product: "Party Pack",
       rejectionReason: "Wrong Factory Code",
       unitsProcessed: 1800,
-      unitsPassed: 1400,
-      unitsRejected: 30,
+      passed: 1400,
+      rejected: 30,
       throughput: 70,
       date: "2024-12-20",
     },
@@ -68,8 +68,8 @@ const customStyles = {
       product: "Tub",
       rejectionReason: "Incorrect Label",
       unitsProcessed: 2000,
-      unitsPassed: 1700,
-      unitsRejected: 50,
+      passed: 1700,
+      rejected: 50,
       throughput: 80,
       date: "2025-02-10",
     },
@@ -80,8 +80,8 @@ const customStyles = {
       product: "Party Pack",
       rejectionReason: "Missing Coding",
       unitsProcessed: 2200,
-      unitsPassed: 1900,
-      unitsRejected: 20,
+      passed: 1900,
+      rejected: 20,
       throughput: 90,
       date: "2025-02-05",
     },
@@ -226,8 +226,8 @@ function MainFilterDashboard() {
         
               // Calculate totals for KPI Cards
               const totalProcessed = filtered.reduce((sum, item) => sum + item.unitsProcessed, 0);
-              const totalPassed = filtered.reduce((sum, item) => sum + item.unitsPassed, 0);
-              const totalRejected = filtered.reduce((sum, item) => sum + item.unitsRejected, 0);
+              const totalPassed = filtered.reduce((sum, item) => sum + item.passed, 0);
+              const totalRejected = filtered.reduce((sum, item) => sum + item.rejected, 0);
               const avgThroughput =
                 filtered.length > 0 ? filtered.reduce((sum, item) => sum + item.throughput, 0) / filtered.length : 0;
               setKpiMetrics({

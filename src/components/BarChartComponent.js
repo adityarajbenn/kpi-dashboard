@@ -19,23 +19,19 @@ const Title = styled.h3`
   width: 100%;
 `;
 
-const data = [
-  { name: "Party Pack", Passed: 90, Rejected: 10 },
-  { name: "Tub", Passed: 75, Rejected: 25 },
-];
 
-const BarChartComponent = () => {
+const BarChartComponent = (filteredData) => {
   return (
     <ChartContainer>
       <Title>Split of Units Processed Today</Title>
       <ResponsiveContainer width="100%" height={250}>
-        <BarChart data={data} barCategoryGap="20%" barGap={5}> {/* ✅ Adjust bar spacing */}
-          <XAxis dataKey="name" tick={{ fontSize: 12 }} /> {/* ✅ Smaller font */}
+        <BarChart data={filteredData.data} barCategoryGap="20%" barGap={5}>
+          <XAxis dataKey="product" tick={{ fontSize: 12 }} />
           <YAxis tick={{ fontSize: 12 }} />
           <Tooltip />
-          <Legend align="right" verticalAlign="top" iconSize={10} /> {/* ✅ Legend fixed */}
-          <Bar dataKey="Passed" fill="#002BC5" barSize={35} /> {/* ✅ Bar width matched */}
-          <Bar dataKey="Rejected" fill="#53E8C0" barSize={35} />
+          <Legend align="right" verticalAlign="top" iconSize={10} />
+          <Bar dataKey="passed" fill="#002BC5" barSize={35} /> 
+          <Bar dataKey="rejected" fill="#53E8C0" barSize={35} />
         </BarChart>
       </ResponsiveContainer>
     </ChartContainer>
