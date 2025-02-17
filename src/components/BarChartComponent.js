@@ -21,11 +21,33 @@ const Title = styled.h3`
 
 
 const BarChartComponent = (filteredData) => {
+  const mergeProductData = (data) => {
+    const productMap = {};
+  
+    data.forEach((entry) => {
+      const productKey = entry.product;
+  
+      if (!productMap[productKey]) {
+        productMap[productKey] = { ...entry };
+      } else {
+        productMap[productKey].passed += entry.passed;
+        productMap[productKey].rejected += entry.rejected;
+        productMap[productKey].unitsProcessed += entry.unitsProcessed;
+        productMap[productKey].throughput = (
+          (productMap[productKey].passed / productMap[productKey].unitsProcessed) * 100
+        ).toFixed(2); // Update throughput based on new values
+      }
+    });
+  
+    return Object.values(productMap);
+  };
+
+  const mergedData = mergeProductData(filteredData.data);
   return (
     <ChartContainer>
       <Title>Split of Units Processed Today</Title>
       <ResponsiveContainer width="100%" height={250}>
-        <BarChart data={filteredData.data} barCategoryGap="20%" barGap={5}>
+        <BarChart data={mergedData} barCategoryGap="20%" barGap={5}>
           <XAxis dataKey="product" tick={{ fontSize: 12 }} />
           <YAxis tick={{ fontSize: 12 }} />
           <Tooltip />
